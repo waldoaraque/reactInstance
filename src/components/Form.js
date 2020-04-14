@@ -1,6 +1,15 @@
 import React, {Fragment, useState} from 'react';
 import { calculateTotal } from '../helpers'
-const Form = ({quantity, saveQuantity, term, saveTerm}) => {
+const Form = (props) => {
+    const { 
+        quantity, 
+        saveQuantity, 
+        term, 
+        saveTerm,
+        total, 
+        saveTotal,
+        saveLoading
+    } = props
     const [error, saveError] = useState(false) //state to validate the form
     const calculateLoan = e => {
         e.preventDefault()
@@ -10,13 +19,20 @@ const Form = ({quantity, saveQuantity, term, saveTerm}) => {
             return
         } 
         saveError(false)
-        const total = calculateTotal(quantity, term)
-        console.log(total)
+
+        saveLoading(true)
+
+        setTimeout(() => {
+            const total = calculateTotal(quantity, term)
+            console.log(total)
+            saveTotal(total)
+            saveLoading(false)
+        }, 3000)
     }
     
     return(
         <Fragment>
-            <form onSubmit={ }>
+            <form onSubmit={calculateLoan }>
                 <div className="row">
                     <div>
                         <label>Cantidad Prestamo</label>
