@@ -6,7 +6,6 @@ const Form = (props) => {
         saveQuantity, 
         term, 
         saveTerm,
-        total, 
         saveTotal,
         saveLoading
     } = props
@@ -39,14 +38,14 @@ const Form = (props) => {
                         <input 
                             className="u-full-width" 
                             type="number" 
-                            placeholder="Ejemplo: 3000" onChange={ e => saveQuantity( parseInt(e.target.value) ) }
+                            placeholder="Ejemplo: 3000" onChange={ e => saveQuantity( parseInt(e.target.value, 10) ) }
                         />
                     </div>
                     <div>
                         <label>Plazo para Pagar</label>
                         <select 
                             className="u-full-width"
-                            onChange={ e => saveTerm( parseInt(e.target.value) ) }
+                            onChange={ e => saveTerm( parseInt(e.target.value, 10) ) }
                         >
                             <option value="">Seleccionar</option>
                             <option value="3">3 meses</option>
